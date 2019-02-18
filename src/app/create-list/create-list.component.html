@@ -1,0 +1,11 @@
+
+ <section class="title">
+
+  <h5 class="hint">Skapa en ny lista</h5>
+</section>
+<form (ngSubmit)="onSubmit($event)" #createForm ="ngForm" class="create">
+  <input type="title" placeholder="title" id="title" required>
+  <input type="user_id" placeholder="userid" id="user_id" required>
+<input type="submit" value="Submit">
+
+</form>
