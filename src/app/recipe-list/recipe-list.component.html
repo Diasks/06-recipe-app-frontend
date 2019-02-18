@@ -1,0 +1,34 @@
+
+<ul *ngIf="recipes$"> 
+  <li *ngFor="let recipe of ( recipes$ | async )[0]">
+<div class="clr-row">
+  <div class="clr-col-lg-3 clr-col-6">
+      <a routerLink="/recipe/{{recipe.id}}" routerLinkActive="active" class="card clickable">
+          <div class="card-img">
+              <img src="{{recipe.smallImageUrls}}">
+          </div>
+          <div class="card-block">
+              <div class="card-text">
+                  <h2>{{recipe.recipeName}}</h2>
+                 <p> Meal: {{recipe.attributes['course']}}
+                  Rating: {{recipe.rating}}</p>
+          </div>
+          </div>
+      </a>
+  </div>
+</div>
+  </li>
+</ul>
+
+
+
+<ul *ngIf="recipes$"> 
+  <li *ngFor="let recipe of ( recipes$ | async )[0]">
+      <img src="{{recipe.smallImageUrls}}">
+    <a routerLink="/recipe/{{recipe.id}}" routerLinkActive="active">
+    {{recipe.recipeName}}</a>
+    <p>{{recipe.course}}</p>
+    <h1>{{recipe.id}}</h1>
+    <p>{{recipe.ingredients}}</p>
+  </li>
+</ul>
