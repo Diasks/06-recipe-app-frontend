@@ -1,0 +1,14 @@
+
+ <section class="title">
+  <h3 class="welcome">  Dianas Recipe-App!</h3>
+
+  <h5 class="hint">Registrera ditt nya konto här! </h5>
+</section>
+<form (ngSubmit)="onSubmit($event)" #registerForm ="ngForm" class="register">
+  <input type="name" placeholder="name" id="name">
+<input type="email" placeholder="email" id="email" required>
+<input type="password" placeholder="password" id="password">
+<input type="password_confirmation" placeholder="password confirmation" id="password_confirmation">
+<input type="submit" value="Submit">
+
+</form>
