@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'recipe-app-frontend-Diasks'`, () => {
+  it(`should have as title 'my-api-app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('recipe-app-frontend-Diasks');
+    expect(app.title).toEqual('my-api-app');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to recipe-app-frontend-Diasks!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to my-api-app!');
   });
 });
