@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let list of saved">
+    <a routerLink="/saved({{list.id}}">
+    {{list.title}}</a>
+    <button (click)="removeList(list.id)">X</button>
+  </li>
+</ul>
+
+  <a routerLink="/create-list" routerLinkActive="active">Create new list</a>
