@@ -1,8 +1,11 @@
 <div *ngIf="list">
   <p>{{list.title}}</p>
+  <p> {{list.recipe}}</p>
   <ul>
-    <li *ngFor="let recipe of list.recipes">
-     <p> {{recipe}}</p>
-    </li>
+    <!-- <li *ngFor="let i of (list | async)[0]">
+     <p> {{list.recipe}}</p>
+    </li> -->
   </ul>
 </div>
+
+
