@@ -92,31 +92,31 @@ item.recipes));
   }
 
 
-addRecipeToList(listId: number, recipeId: string){
-  const recipes = this.getList(listId)
-  .then((saved: Saved[])=> {
-    return saved;
-  })
-const promise = new Promise((resolve, reject)=> {
-  fetch(`http://recipeapp.test/api/recipeLists/${listId}`, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-  method: 'put',
-  body: JSON.stringify({
-  recipes: [recipeId]
-  })
-  })
-  .then(res=> res.json())
-  .then(res=>{
+// addRecipeToList(listId: number, recipeId: string){
+//   const recipes = this.getList(listId)
+//   .then((saved: Saved[])=> {
+//     return saved;
+//   })
+// const promise = new Promise((resolve, reject)=> {
+//   fetch(`http://recipeapp.test/api/recipeLists/${listId}`, {
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     },
+//   method: 'put',
+//   body: JSON.stringify({
+//   recipes: [recipeId]
+//   })
+//   })
+//   .then(res=> res.json())
+//   .then(res=>{
 
-    console.log(res);
-  });
-});
-return promise;
+//     console.log(res);
+//   });
+// });
+// return promise;
 
-}
+// }
 
 getList(listId: number) {
   let list: Saved;
@@ -127,7 +127,7 @@ const promise = new Promise((resolve, reject)=>{
     list = new Saved(
 res.id,
 res.title,
-res.recipes
+res.recipe
 );
 resolve(list);
   });
@@ -166,6 +166,20 @@ createList(title, user_id) {
 title,
 user_id
   })
+}
+
+
+
+addRecipeToList(listId: number, recipeId: string): Observable<any>{
+debugger;
+
+  return this.http.put(`http://recipeapp.test/api/recipeLists/${listId}`, {
+    
+    
+  recipe: recipeId
+  
+  })
+
 }
 
 
