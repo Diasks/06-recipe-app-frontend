@@ -22,8 +22,11 @@ saved: Saved[];
 
 
   removeList(listId:number) {
-    debugger;
-this.savedService.removeRecipeList(listId);
-debugger;
+ 
+this.savedService.removeRecipeList(listId)
+.subscribe(data => {
+  debugger;
+ console.log(data);
+});
   }
 }
