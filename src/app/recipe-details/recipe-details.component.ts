@@ -29,8 +29,12 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   saveRecipe(recipeId:string) {
-    const listId = 1;
-this.service.addRecipeToList(listId, recipeId);
+    const listId = 15;
+    debugger;
+this.service.addRecipeToList(listId, recipeId).subscribe(data=>{
+  console.log(data);
+})
+debugger;
   }
 
   
