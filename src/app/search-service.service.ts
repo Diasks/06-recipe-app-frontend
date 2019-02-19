@@ -68,9 +68,9 @@ public get(listId: number): Observable<any> {
   return this.http.get<any>(`${API_URL}/recipeLists/${listId}`);
 }
 
-public delete(listId: number) {
-  return this.http.delete(`${API_URL}/recipeLists/${listId}`);
-}
+// public delete(listId: number) {
+//   return this.http.delete(`${API_URL}/recipeLists/${listId}`);
+// }
 
 
 
@@ -169,8 +169,10 @@ user_id
 }
 
 
-removeRecipeList(listId) {
-  return this.http.delete(`http://recipeapp.test/api/recipeLists/${listId}`);
+removeRecipeList(listId: number): Observable<any> {
+  debugger;
+  return this.http.delete(`${API_URL}api/recipeLists/${listId}`);
+  
 }
 
 
