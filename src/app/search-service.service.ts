@@ -49,6 +49,45 @@ export class SearchService {
     );
   }
 
+
+  searchRecipeDesserts(term: string) {
+    return this.http.get(
+      `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&&allowedCourse[]=course^course-Desserts`
+    ).pipe(
+      map((result: any) => result.matches)
+    ).subscribe(results => {
+      return this.results$.next([results]);
+    });
+
+
+  }
+
+
+
+  searchRecipeAppetizers(term: string) {
+    return this.http.get(
+      `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&allowedCourse[]=course^course-Appetizers`
+    ).pipe(
+      map((result: any) => result.matches)
+    ).subscribe(results => {
+      return this.results$.next([results]);
+    });
+  }
+
+
+  searchRecipeMainDishes(term: string) {
+    return this.http.get(
+      `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&allowedCourse[]=course^course-MainDishes`
+    ).pipe(
+      map((result: any) => result.matches)
+    ).subscribe(results => {
+      return this.results$.next([results]);
+    });
+
+  }
+
+
+
   searchRecipe(term: string) {
     return this.http.get(
       `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}`
@@ -71,6 +110,52 @@ public get(listId: number): Observable<any> {
 // public delete(listId: number) {
 //   return this.http.delete(`${API_URL}/recipeLists/${listId}`);
 // }
+
+searchRecipeVegan(term: string) {
+  debugger;
+  return this.http.get(
+    `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&allowedDiet[]=386^Vegan`
+  ).pipe(
+    map((result: any) => result.matches)
+  ).subscribe(results => {
+    return this.results$.next([results]);
+  });
+}
+
+
+searchRecipeVegetarian(term: string) {
+  debugger;
+  return this.http.get(
+    `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&allowedDiet[]=388^Lacto vegetarian`
+  ).pipe(
+    map((result: any) => result.matches)
+  ).subscribe(results => {
+    return this.results$.next([results]);
+  });
+}
+searchRecipeGluten(term: string) {
+  debugger;
+  return this.http.get(
+    `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&allowedAllergy[]=393^Gluten-Free`
+  ).pipe(
+    map((result: any) => result.matches)
+  ).subscribe(results => {
+    return this.results$.next([results]);
+  });
+}
+
+searchRecipeLactos(term: string) {
+  debugger;
+  return this.http.get(
+    `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}&allowedAllergy[]=396^Dairy-Free`
+  ).pipe(
+    map((result: any) => result.matches)
+  ).subscribe(results => {
+    return this.results$.next([results]);
+  });
+}
+
+
 
 
 
@@ -174,13 +259,14 @@ addRecipeToList(listId: number, recipeId: string): Observable<any>{
 debugger;
 
   return this.http.put(`http://recipeapp.test/api/recipeLists/${listId}`, {
-    
-    
-  recipe: recipeId
+    body: {
+  recipe: [`${recipeId}`]
+    }
   
-  })
-
+  });
 }
+
+
 
 
 removeRecipeList(listId: number): Observable<any> {
