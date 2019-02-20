@@ -24,6 +24,49 @@ export class AppComponent implements OnInit {
     this.appetizerService.searchRecipe(term);
   }
 
+  doSearchAppetizers(term: string) {
+    debugger;
+    this.appetizerService.searchRecipeAppetizers(term);
+  }
+  doSearchMainDishes(term: string) {
+    this.appetizerService.searchRecipeMainDishes(term);
+  }
+  doSearchDesserts(term: string) {
+    this.appetizerService.searchRecipeDesserts(term);
+  }
+
+  doSearchVegan(term: string) {
+    debugger;
+    this.appetizerService.searchRecipeVegan(term);
+  }
+
+  doSearchVegetarian(term: string) {
+    debugger;
+    this.appetizerService.searchRecipeVegetarian(term);
+  }
+
+  doSearchGluten(term: string) {
+    debugger;
+    this.appetizerService.searchRecipeGluten(term);
+  }
+
+  doSearchLactos(term: string) {
+    debugger;
+    this.appetizerService.searchRecipeLactos(term);
+  }
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
   //   doSearch(term:string) {
   //     const searchrecipe = [];
 
