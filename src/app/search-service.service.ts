@@ -20,28 +20,7 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  getAppetizer() {
-    return this.http.get<any>(
-      `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&allowedCourse[]=course^course-Appetizers`
-    );
-  }
 
-  getDinner() {
-    return this.http.get<any>(
-      `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&allowedCourse[]=course^course-MainDishes`
-    );
-  }
-
-  getDessert() {
-    return this.http.get<any>(
-      `${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&allowedCourse[]=course^course-Desserts`
-    );
-  }
-
-  // searchRecipe(term: string){
-  //   return this.http.get<SearchItem>(`${apiRoot}_app_id=${apiId}&_app_key=${apiKey}&q=${term}`);
-
-  // }
 
   getRecipeId(recipeId: string): Observable<SearchItem[]> {
     return this.http.get<SearchItem[]>(
@@ -99,17 +78,15 @@ export class SearchService {
   }
 
   //hämta alla listor
-public getAll(): Observable<[any]> {
-  return this.http.get<any>(`${API_URL}/recipeLists`);
-}
-
-public get(listId: number): Observable<any> {
-  return this.http.get<any>(`${API_URL}/recipeLists/${listId}`);
-}
-
-// public delete(listId: number) {
-//   return this.http.delete(`${API_URL}/recipeLists/${listId}`);
+// public getAll(): Observable<[any]> {
+//   return this.http.get<any>(`${API_URL}/recipeLists`);
 // }
+
+// public get(listId: number): Observable<any> {
+//   return this.http.get<any>(`${API_URL}/recipeLists/${listId}`);
+// }
+
+
 
 searchRecipeVegan(term: string) {
   debugger;
@@ -168,7 +145,8 @@ getLists() {
          LISTS.push(new Saved(
 item.id,
 item.title,
-item.recipes));
+item.recipes,
+item.user_id));
        });
        resolve(LISTS);
      });
@@ -177,31 +155,6 @@ item.recipes));
   }
 
 
-// addRecipeToList(listId: number, recipeId: string){
-//   const recipes = this.getList(listId)
-//   .then((saved: Saved[])=> {
-//     return saved;
-//   })
-// const promise = new Promise((resolve, reject)=> {
-//   fetch(`http://recipeapp.test/api/recipeLists/${listId}`, {
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json'
-//     },
-//   method: 'put',
-//   body: JSON.stringify({
-//   recipes: [recipeId]
-//   })
-//   })
-//   .then(res=> res.json())
-//   .then(res=>{
-
-//     console.log(res);
-//   });
-// });
-// return promise;
-
-// }
 
 getList(listId: number) {
   let list: Saved;
@@ -212,7 +165,8 @@ const promise = new Promise((resolve, reject)=>{
     list = new Saved(
 res.id,
 res.title,
-res.recipe
+res.recipe,
+res.user_id
 );
 resolve(list);
   });
@@ -243,6 +197,22 @@ getUserDetails(email, password)
 }
 
 
+updateList(title: string, listId: number): Observable<any>{
+  debugger;
+  
+    return this.http.put(`http://recipeapp.test/api/recipeLists/${listId}`, {
+    headers: {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+    },
+  
+    title: title
+      
+    
+    });
+  }
+
+
 
 
 createList(title, user_id) {
@@ -259,9 +229,13 @@ addRecipeToList(listId: number, recipeId: string): Observable<any>{
 debugger;
 
   return this.http.put(`http://recipeapp.test/api/recipeLists/${listId}`, {
-    body: {
-  recipe: [`${recipeId}`]
-    }
+  headers: {
+'Accept': 'application/json',
+'Content-Type': 'application/json'
+  },
+
+  recipe: recipeId
+    
   
   });
 }
@@ -275,9 +249,5 @@ removeRecipeList(listId: number): Observable<any> {
   
 }
 
-
-// logout() {
-//   this.http.logout();
-// }
 
 }
