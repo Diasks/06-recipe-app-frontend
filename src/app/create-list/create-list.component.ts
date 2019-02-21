@@ -28,7 +28,7 @@ export class CreateListComponent implements OnInit {
     this.http.createList(title, user_id).subscribe(data =>{
       if(data){      
         this.router.navigate(['/saved'])
-console.log(data);
+window.alert(`Din lista är nu skapad och heter följande: ${title}`);
       } else {
         window.alert('error!');
       }
