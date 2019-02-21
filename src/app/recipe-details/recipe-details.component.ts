@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { SearchItem } from "../Searchitem.model";
 import { SearchService } from "../search-service.service";
 import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
+
 
 @Component({
   selector: "app-recipe-details",

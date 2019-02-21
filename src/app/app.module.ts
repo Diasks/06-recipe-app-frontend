@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { FormsModule } from "@angular/forms";
-import { RouterModule, Routes } from "@angular/router";
 import { RecipeDetailsComponent } from "./recipe-details/recipe-details.component";
 import { ClarityModule } from "@clr/angular";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";

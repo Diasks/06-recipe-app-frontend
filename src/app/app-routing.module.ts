@@ -7,7 +7,7 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { SavedDetailsComponent } from "./saved-details/saved-details.component";
 import { CreateListComponent } from "./create-list/create-list.component";
-// import { PageNotFoundComponent} from './not.found-component';
+
 
 const routes: Routes = [
   { path: "", component: RecipeListComponent },

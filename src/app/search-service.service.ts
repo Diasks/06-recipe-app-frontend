@@ -1,10 +1,10 @@
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { SearchItem } from "./Searchitem.model";
 import { Injectable } from "@angular/core";
 
 import { environment } from "src/environments/environment";
 import { Observable, BehaviorSubject } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import {  map } from "rxjs/operators";
 import { Saved } from "./saved/saved.model";
 
 const apiRoot = environment.apiRoot;
