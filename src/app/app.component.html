@@ -1,150 +1,54 @@
-
 <clr-main-container>
   <clr-header>
-        {{title}}
-      <div class="header-nav" [clr-nav-level]="1">
-          <input
-          type="search"
-          class="form-control"
-          placeholder="Enter search string"
-          #search/> 
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="doSearch(search.value)">
+    {{title}}
+    <div class="header-nav" [clr-nav-level]="1">
+      <input type="search" class="form-control" placeholder="Enter search string" #search />
+      <button type="button" class="btn btn-primary" (click)="doSearch(search.value)">
         Search
-      </button> 
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="doSearchAppetizers(search.value)">
-        Appetizers
-      </button> 
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="doSearchMainDishes(search.value)">
-        Main Dishes
-      </button> 
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="doSearchDesserts(search.value)">
+      </button>
+      <button type="button" class="label label-orange clickable" (click)="doSearchAppetizers(search.value)">
+        Starters
+      </button>
+      <button type="button" class="label label-orange clickable" (click)="doSearchMainDishes(search.value)">
+        Mains
+      </button>
+      <button type="button" class="label label-orange clickable" (click)="doSearchDesserts(search.value)">
         Desserts
-      </button> 
-      <button
-      type="button"
-      class="btn btn-primary"
-      (click)="doSearchVegan(search.value)">
-      Vegan
-    </button> 
-    <button
-    type="button"
-    class="btn btn-primary"
-    (click)="doSearchVegetarian(search.value)">
-    Vegetarian
-  </button> 
-  <button
-  type="button"
-  class="btn btn-primary"
-  (click)="doSearchGluten(search.value)">
-  Glutenfree
-</button> 
-<button
-type="button"
-class="btn btn-primary"
-(click)="doSearchLactos(search.value)">
-Lactosfree
-</button> 
-      </div>
-      ...
+      </button>
+      <br />
+      <br />
+      <button type="button" class="label label-orange clickable" (click)="doSearchVegan(search.value)">
+        Vegan
+      </button>
+      <button type="button" class="label label-orange clickable" (click)="doSearchVegetarian(search.value)">
+        Vegetarian
+      </button>
+      <button type="button" class="label label-orange clickable" (click)="doSearchGluten(search.value)">
+        No Gluten
+      </button>
+
+      <button type="button" class="label label-orange clickable" (click)="doSearchLactos(search.value)">
+        No Milk
+      </button>
+    </div>
   </clr-header>
   <div class="content-container">
-      <main class="content-area">
-          <router-outlet></router-outlet>
-      </main>
-      <nav class="sidenav" [clr-nav-level]="2">
-          <a routerLink="/login" routerLinkActive="active" class="nav-link active">
-            Login
-         </a>
-     <a routerLink="/register" routerLinkActive="active" class="nav-link">Register</a>
-     <a routerLink="/login">Logout</a>
-     <a routerLink="/create-list" routerLinkActive="active" class="nav-link">Skapa ny lista</a>
-     <a routerLink="/saved" routerLinkActive="active" class="nav-link">Mina listor</a>
-     <!-- <button (click)=”logout()”>Logout</button> -->
-      </nav>
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+    <nav class="sidenav" [clr-nav-level]="2">
+      <a routerLink="/login" routerLinkActive="active" class="nav-link active">
+        Login
+      </a>
+      <a routerLink="/register" routerLinkActive="active" class="nav-link">Register</a>
+      <a routerLink="/login">Logout</a>
+      <a routerLink="/create-list" routerLinkActive="active" class="nav-link">Skapa ny lista</a>
+      <a routerLink="/saved" routerLinkActive="active" class="nav-link">Mina listor</a>
+
+    </nav>
   </div>
 </clr-main-container>
 
 
 
 
-<!-- <form class="form-inline">
-<div class="form-group">
-  <input
-    type="search"
-    class="form-control"
-    placeholder="Enter search string"
-    #search
-  />
-</div>
-<button
-  type="button"
-  class="btn btn-primary"
-  (click)="doSearch(search.value)"
->
-  Search
-</button> -->
-
-
-<!-- <li *ngFor="let i of (SearchItem | async)">{{i.recipeName}}{{i.course}}</li> -->
-
-<!-- <li *ngFor="let i of (SearchItem | async)">{{i.recipeName}} {{i.course}}</li>
-<li *ngFor="let i of (recipes$ | async)">{{i.recipeName}} {{i.course}}</li> -->
-
-<!-- 
-<li *ngFor="let i of SearchItem">   <a routerLink="{{recipe/id}}">
-  {{i.recipeName}}</a></li>  -->
-
-<!-- 
-<ul>
-<li *ngFor="let i of searchrecipe">
-  <a routerLink="{{recipe/id}}">
-  {{i.recipeName}}</a>
-</li>
-</ul> -->
-<!-- <ul><li *ngFor="let i of searchrecipe">
-  <img src="{{i.smallImageUrls}}">
-  <h1>{{i.recipeName}}</h1>
-  <p>{{i.course}}</p>
-  {{i.ingredients}}
-  <a href="{{i.sourceDisplayName}}">recept</a>
-</li></ul> -->
-<!-- <ul><li *ngFor="let i of appetizers">
-  <img src="{{i.smallImageUrls}}">
-  <h1>{{i.recipeName}}</h1>
-  <p>{{i.course}}</p>
-</li></ul>
-<ul><li *ngFor="let i of desserts">
-  <img src="{{i.smallImageUrls}}">
-  <h1>{{i.recipeName}}</h1>
-  <p>{{i.course}}</p>
-</li></ul>
-<ul><li *ngFor="let i of maincourses">
-  <img src="{{i.smallImageUrls}}">
-<h1>{{i.recipeName}}</h1>
-<p>{{i.course}}</p>
-
-</li></ul>
-<div>
-{{res|json}}
-</div>
-<ul class="list-group">
-<li class="list-group-item" *ngFor="let item of SearchItem">
-
-    <img src="{{item.url}}">
-    <a target="_blank"
-       href="{{item.url}}">{{recipeName}}
-    </a>
-</li>
-</ul> -->
