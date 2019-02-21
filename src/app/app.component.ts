@@ -6,10 +6,10 @@ import { Observable } from "rxjs";
 @Component({
   selector: "app",
   templateUrl: "./app.component.html",
-  styleUrls: ['./app.component.css']
+  styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  title = "frontend recipe app Diasks";
+  title = "Recipay!";
 
   recipes$: Observable<SearchItem[]>;
 
@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
   }
 
   doSearchAppetizers(term: string) {
-    debugger;
     this.appetizerService.searchRecipeAppetizers(term);
   }
   doSearchMainDishes(term: string) {
@@ -33,29 +32,18 @@ export class AppComponent implements OnInit {
   }
 
   doSearchVegan(term: string) {
-    debugger;
     this.appetizerService.searchRecipeVegan(term);
   }
 
   doSearchVegetarian(term: string) {
-    debugger;
     this.appetizerService.searchRecipeVegetarian(term);
   }
 
   doSearchGluten(term: string) {
-    debugger;
     this.appetizerService.searchRecipeGluten(term);
   }
 
   doSearchLactos(term: string) {
-    debugger;
     this.appetizerService.searchRecipeLactos(term);
   }
-
-  
-
-  
-  
-
 }
-

@@ -1,26 +1,25 @@
 <ul>
+  <h2>Befintliga listor:</h2>
   <li *ngFor="let list of saved">
-    <a routerLink="/saved/{{list.id}}">
-    {{list.title}}</a>
-  
-    <button (click)="removeList(list.id)">X</button>
+    <a routerLink="/saved/{{ list.id }}"> {{ list.title }} </a>
+
+    <button (click)="removeList(list.id)" title="remove">
+      <clr-icon shape="trash" class="is-solid"></clr-icon>
+    </button>
   </li>
 </ul>
-  <a routerLink="/create-list" routerLinkActive="active">Create new list</a>
 
+<p>
+  <a routerLink="/create-list" routerLinkActive="active"
+    >Skapa en ny lista här!</a
+  >
+</p>
 
-
-
-  <section class="title">
-      <h5 class="hint">Uppdatera en befintlig lista</h5>
-    </section>
-    <form (ngSubmit)="onSubmit($event)" #createForm ="ngForm" class="update">
-      <input type="title" placeholder="nytt namn" id="title" required>
-      <input type="user_id" placeholder="id på lista" id="list_id" required>
-    <input type="submit" value="Submit">
- 
-    
-    </form>
-    
-    
-  
+<section class="title">
+  <h5 class="hint">Uppdatera en befintlig lista</h5>
+</section>
+<form (ngSubmit)="onSubmit($event)" #createForm="ngForm" class="update">
+  <input type="title" placeholder="nytt namn" id="title" required />
+  <input type="user_id" placeholder="id på lista" id="list_id" required />
+  <input type="submit" value="Uppdatera" class="btn btn-primary" />
+</form>

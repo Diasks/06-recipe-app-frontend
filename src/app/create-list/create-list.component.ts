@@ -1,37 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../search-service.service';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { SearchService } from "../search-service.service";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-create-list',
-  templateUrl: './create-list.component.html',
-  styleUrls: ['./create-list.component.css']
+  selector: "app-create-list",
+  templateUrl: "./create-list.component.html",
+  styleUrls: ["./create-list.component.css"]
 })
-
 export class CreateListComponent implements OnInit {
+  constructor(private http: SearchService, private router: Router) {}
 
-  constructor(private http: SearchService,
-    private router: Router) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-
-
-
-
-  onSubmit(event){
+  onSubmit(event) {
     const target = event.target;
-    const title = target.querySelector('#title').value;
-    const user_id = target.querySelector('#user_id').value;
-    this.http.createList(title, user_id).subscribe(data =>{
-      if(data){      
-        this.router.navigate(['/saved'])
-window.alert(`Din lista är nu skapad och heter följande: ${title}`);
+    const title = target.querySelector("#title").value;
+    const user_id = target.querySelector("#user_id").value;
+    this.http.createList(title, user_id).subscribe(data => {
+      if (data) {
+        this.router.navigate(["/saved"]);
+        window.alert(`Din lista är nu skapad och heter följande: ${title}`);
       } else {
-        window.alert('error!');
+        window.alert("error!");
       }
     });
-  };
+  }
 }

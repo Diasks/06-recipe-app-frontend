@@ -7,8 +7,8 @@
   </li>
 </ul>
 
-<button routerLink="/"> back</button>  
+
 <input type="number" placeholder="list_id" #list_id>
-<button (click)="saveRecipe(recipe$.id, list_id.value)"> save</button>
+<button (click)="saveRecipe(recipe$.id, list_id.value)" class="btn btn-primary"> save</button>
 
-
+<button routerLink="/" class="btn btn-primary"> back</button>  

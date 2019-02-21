@@ -1,12 +1,41 @@
-
- <section class="title">
-  <h3 class="welcome">Welcome to</h3>
-  Dianas Recipe-App!
-  <h5 class="hint">Logga in med ditt befintliga konto! </h5>
+<section class="title">
+  <h5 class="hint">Logga in med ditt befintliga konto!</h5>
 </section>
-<form (ngSubmit)="onSubmit($event)" #loginForm ="ngForm" class="login">
-<input type="email" placeholder="email" id="email" required>
-<input type="password" placeholder="password" id="password">
-<input type="submit" value="Submit">
+<form
+  clrForm
+  clrLayout="horizontal"
+  (ngSubmit)="onSubmit($event)"
+  #loginForm="ngForm"
+  class="login"
+>
+  <clr-input-container>
+    <label>Email</label>
+    <input
+      clrInput
+      type="email"
+      [(ngModel)]="email"
+      id="email"
+      name="email"
+      required
+    />
+    <clr-control-error *clrIfError="'required'"
+      >This field is required!</clr-control-error
+    >
+  </clr-input-container>
+
+  <clr-input-container>
+    <label>Password</label>
+    <input
+      clrInput
+      type="password"
+      [(ngModel)]="password"
+      id="password"
+      name="password"
+      required
+    />
+    <clr-control-error *clrIfError="'required'"
+      >This field is required!</clr-control-error
+    >
+  </clr-input-container>
 </form>
-<button routerLink="/"> back</button>  
+<input type="submit" value="Submit" class="btn btn-primary" />

@@ -15,4 +15,46 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
     this.recipes$ = this.appetizerService.matches
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  getAppetizer () {
+    debugger;
+    this.recipes$ = this.appetizerService.matches['Appetizers'](data =>{
+      this.recipes$ = data['Appetizers']
+      console.log(this.recipes$)
+    })
+  }
+  
+  getDesserts () {
+    debugger;
+    this.recipes$ = this.appetizerService.matches['Course']['Desserts'].subscribe(data =>{
+      console.log(data)
+    })
+  }
+
+  getMainDishes() {
+    debugger;
+    this.recipes$ = this.appetizerService.matches['Course']['Maindishes'].subscribe(data =>{
+      console.log(data)
+  })}
+
 }

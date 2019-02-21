@@ -1,11 +1,9 @@
 <div *ngIf="list">
-  <p>{{list.title}}</p>
-  <p> {{list.recipe}}</p>
+  <p>{{ list.title }}</p>
+
   <ul>
-    <!-- <li *ngFor="let i of (list | async)[0]">
-     <p> {{list.recipe}}</p>
-    </li> -->
+    <p>{{ list.recipe }}</p>
   </ul>
 </div>
 
-
+<button routerLink="/saved" class="btn btn-primary">back</button>

@@ -24,17 +24,16 @@ export class RecipeDetailsComponent implements OnInit {
 
   getRecipeId() {
     this.service.getRecipeId(this.recipeId).subscribe(data => {
-      return this.recipe$ = data;
+      return (this.recipe$ = data);
     });
   }
 
-  saveRecipe(recipeId:string, list_id) {
-  this.service.addRecipeToList(list_id, recipeId).subscribe(data=>{
-    window.alert(`${recipeId} är nu sparad i vald lista!`)
-  return data;
-})
-
-  }
-
+  saveRecipe(recipeId: string, list_id) {
+    this.service.addRecipeToList(list_id, recipeId).subscribe(data => {
+      
+      window.alert(`${recipeId} är nu sparad i vald lista!`);
   
+      return data;
+    });
+  }
 }

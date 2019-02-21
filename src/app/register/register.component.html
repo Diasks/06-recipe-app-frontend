@@ -1,14 +1,81 @@
+<section class="title">
+  <h3 class="welcome">Welcome to Recipay!</h3>
 
- <section class="title">
-  <h3 class="welcome">  Dianas Recipe-App!</h3>
-
-  <h5 class="hint">Registrera ditt nya konto här! </h5>
+  <h5 class="hint">Registrera ditt nya konto här!</h5>
 </section>
-<form (ngSubmit)="onSubmit($event)" #registerForm ="ngForm" class="register">
-  <input type="name" placeholder="name" id="name" required>
-<input type="email" placeholder="email" id="email" required>
-<input type="password" placeholder="password" id="password">
-<input type="password_confirmation" placeholder="password confirmation" id="password_confirmation" required>
-<input type="submit" value="Submit">
+<form
+  clrForm
+  clrLayout="horizontal"
+  (ngSubmit)="onSubmit($event)"
+  #registerForm="ngForm"
+  class="register"
+>
+  <clr-input-container>
+    <label>Name</label>
+    <input
+      clrInput
+      type="name"
+      [(ngModel)]="name"
+      id="name"
+      name="name"
+      required
+    />
+    <clr-control-error *clrIfError="'required'"
+      >This field is required!</clr-control-error
+    >
+  </clr-input-container>
 
+  <clr-input-container>
+    <label>Email</label>
+    <input
+      clrInput
+      type="email"
+      [(ngModel)]="email"
+      id="email"
+      name="email"
+      required
+    />
+    <clr-control-error *clrIfError="'required'"
+      >This field is required!</clr-control-error
+    >
+  </clr-input-container>
+
+  <clr-input-container>
+    <label>Password</label>
+    <input
+      clrInput
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      id="password"
+      required
+      minlength="6"
+    />
+    <clr-control-error *clrIfError="'required'"
+      >This field is required!</clr-control-error
+    >
+    <clr-control-error *clrIfError="'minlength'"
+      >It must be at least 6 characters!</clr-control-error
+    >
+  </clr-input-container>
+
+  <clr-input-container>
+    <label>Password Confirmation</label>
+    <input
+      clrInput
+      type="password"
+      [(ngModel)]="passwordconfirmation"
+      name="passwordconfirmation"
+      id="password_confirmation"
+      required
+      minlength="6"
+    />
+    <clr-control-error *clrIfError="'required'"
+      >This field is required!</clr-control-error
+    >
+    <clr-control-error *clrIfError="'minlength'"
+      >It must be at least 6 characters!</clr-control-error
+    >
+  </clr-input-container>
+  <input type="submit" value="Submit" class="btn btn-primary" />
 </form>
