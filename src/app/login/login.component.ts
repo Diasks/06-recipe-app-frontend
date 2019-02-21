@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.http.getUserDetails(email, password).subscribe(data =>{
     if(data['status'] == 'success') {
       this.router.navigate(['/saved'])
-      console.log('du är inloggad!');
+      window.alert(`du är nu inloggad och välkommen hit ${email}!`);
     } else {
       window.alert('Error!');
     }
