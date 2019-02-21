@@ -28,22 +28,13 @@ export class RecipeDetailsComponent implements OnInit {
     });
   }
 
-  saveRecipe(recipeId:string) {
-    const listId = 15;
-    debugger;
-this.service.addRecipeToList(listId, recipeId).subscribe(data=>{
-  console.log(data);
+  saveRecipe(recipeId:string, list_id) {
+  this.service.addRecipeToList(list_id, recipeId).subscribe(data=>{
+    window.alert(`${recipeId} är nu sparad i vald lista!`)
+  return data;
 })
-debugger;
+
   }
 
   
-  // getRecipeId(): void
-  // {
-
-  //   const recipeId = +this.route.snapshot.paramMap.get('id');
-  //   this.service.getRecipeId(recipeId).subscribe(recipes$ => this.recipes$=recipes$);
-  //   };
-
-  // this.recipes$ = this.service.getRecipeId(recipeId);
 }
