@@ -3,12 +3,14 @@ import { SearchItem } from '../Searchitem.model';
 export class Saved {
 public id: number;
 public title; string;
-public recipes: SearchItem[];
+public recipe: SearchItem[];
+public user_id: number;
 
-constructor(id: number, title: string, recipes: SearchItem[]){
+constructor(id: number, title: string, recipe: SearchItem[], user_id: number){
     this.id = id;
     this.title = title;
-    this.recipes = recipes;
+    this.recipe = recipe;
+    this.user_id = user_id;
 }
 
 }
