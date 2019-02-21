@@ -10,10 +10,7 @@ import { Observable } from "rxjs";
 })
 export class AppComponent implements OnInit {
   title = "frontend recipe app Diasks";
-  // appetizers: [];
-  // desserts: [];
-  // maincourses: [];
-  // recipeId: [];
+
   recipes$: Observable<SearchItem[]>;
 
   constructor(private appetizerService: SearchService) {}
@@ -59,53 +56,6 @@ export class AppComponent implements OnInit {
 
   
   
-  
-  
-  
-  
-  
 
-
-
-  //   doSearch(term:string) {
-  //     const searchrecipe = [];
-
-  //     this.appetizerService.searchRecipe(term).subscribe(data=>{
-  // console.log(data);
-  // console.log(data['matches']);
-  // // this.searchrecipe = data[0];
-  // searchrecipe.push(data['matches']);
-  // console.log(searchrecipe);
-  // })
-  //     };
-
-  // handleAppetizerClick = () => {
-  //  this.appetizerService.getAppetizer().subscribe(data => {
-  //   console.log(data)
-  //   this.appetizers = data.matches;
-
-  //  });
-
-  // }
-
-  // handleDessertClick = () => {
-  //   this.appetizerService.getDessert().subscribe(data => {
-  //     console.log(data)
-  //     this.desserts = data.matches;
-  //   });
-
-  // }
-
-  // handleDinnerClick = () => {
-  //   this.appetizerService.getDinner().subscribe(data => {
-  //     console.log(data)
-  //     this.maincourses = data.matches;
-  //   });
 }
 
-//   handleRecipeId(recipeId: number) {
-//   this.appetizerService.getRecipeId(recipeId).subscribe(data=>{
-// console.log(data);
-// this.recipeId = data.matches;
-//     });
-//   }
