@@ -11,7 +11,6 @@ import { Observable } from "rxjs";
 })
 export class RecipeDetailsComponent implements OnInit {
   recipe$;
-  // : Observable<SearchItem[]>;
   recipeId;
 
   constructor(private service: SearchService, private route: ActivatedRoute) {

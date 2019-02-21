@@ -19,8 +19,7 @@ export class SavedDetailsComponent implements OnInit {
   getSaved(): void {
     const listId = +this.route.snapshot.paramMap.get("id");
     const that = this;
-    this.service.getList(listId).then((list: Saved) => {
-      
+    this.service.getList(listId).then((list: Saved) => {    
       return (that.list = list);
     });
   }
