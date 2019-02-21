@@ -2,8 +2,25 @@
   <li *ngFor="let list of saved">
     <a routerLink="/saved/{{list.id}}">
     {{list.title}}</a>
+  
     <button (click)="removeList(list.id)">X</button>
   </li>
 </ul>
-
   <a routerLink="/create-list" routerLinkActive="active">Create new list</a>
+
+
+
+
+  <section class="title">
+      <h5 class="hint">Uppdatera en befintlig lista</h5>
+    </section>
+    <form (ngSubmit)="onSubmit($event)" #createForm ="ngForm" class="update">
+      <input type="title" placeholder="nytt namn" id="title" required>
+      <input type="user_id" placeholder="id på lista" id="list_id" required>
+    <input type="submit" value="Submit">
+ 
+    
+    </form>
+    
+    
+  
