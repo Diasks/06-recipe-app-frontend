@@ -116,7 +116,7 @@ export class SearchService {
   getLists() {
     const LISTS = [];
     const promise = new Promise((resolve, reject) => {
-      fetch("http://recipeapp.test/api/recipeLists")
+      fetch("http://api.dianaskshipek.chas.academy/api/recipeLists")
         .then(res => res.json())
         .then(res => {
           res.forEach(item => {
@@ -133,7 +133,7 @@ export class SearchService {
   getList(listId: number) {
     let list: Saved;
     const promise = new Promise((resolve, reject) => {
-      fetch(`http://recipeapp.test/api/recipeLists/${listId}`)
+      fetch(`http://api.dianaskshipek.chas.academy/api/recipeLists/${listId}`)
         .then(res => res.json())
         .then(res => {
           list = new Saved(res.id, res.title, res.recipe, res.user_id);
@@ -149,7 +149,7 @@ export class SearchService {
     password: string,
     password_confirmation: string
   ) {
-    return this.http.post("http://recipeapp.test/api/register", {
+    return this.http.post("http://api.dianaskshipek.chas.academy/api/register", {
       name,
       email,
       password,
@@ -158,7 +158,7 @@ export class SearchService {
   }
 
   getUserDetails(email: string, password: string): Observable<any> {
-    return this.http.post("http://recipeapp.test/api/login", {
+    return this.http.post("http://api.dianaskshipek.chas.academy/api/login", {
       email,
       password
     });
@@ -166,7 +166,7 @@ export class SearchService {
 
   updateList(title: string, listId): Observable<any> {
 
-    return this.http.put(`http://recipeapp.test/api/recipeLists/${listId}`, {
+    return this.http.put(`http://api.dianaskshipek.chas.academy/api/recipeLists/${listId}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -177,14 +177,14 @@ export class SearchService {
   }
 
   createList(title: string, user_id: number): Observable<any> {
-    return this.http.post("http://recipeapp.test/api/recipeLists", {
+    return this.http.post("http://api.dianaskshipek.chas.academy/api/recipeLists", {
       title,
       user_id
     });
   }
 
   addRecipeToList(listId: number, recipeId: string): Observable<any> {
-    return this.http.put(`http://recipeapp.test/api/recipeLists/${listId}`, {
+    return this.http.put(`http://api.dianaskshipek.chas.academy/api/recipeLists/${listId}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"

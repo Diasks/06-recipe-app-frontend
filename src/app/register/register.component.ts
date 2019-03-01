@@ -9,8 +9,14 @@ import { Router } from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
   constructor(private http: SearchService, private router: Router) {}
-
+  
   ngOnInit() {}
+
+name: null;
+email: null;
+password: null;
+password_confirmation: null;
+
 
   onSubmit(event) {
     const target = event.target;

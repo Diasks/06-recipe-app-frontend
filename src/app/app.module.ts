@@ -33,4 +33,4 @@ import { CreateListComponent } from './create-list/create-list.component';
 })
 export class AppModule {}
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+

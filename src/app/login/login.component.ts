@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
+email: null;
+password: null;
+
   onSubmit(event) {
     const target = event.target;
     const email = target.querySelector("#email").value;
