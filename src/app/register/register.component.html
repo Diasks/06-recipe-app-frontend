@@ -6,7 +6,7 @@
 <form
   clrForm
   clrLayout="horizontal"
-  (ngSubmit)="onSubmit($event)"
+  (ngSubmit)="onSubmit()"
   #registerForm="ngForm"
   class="register"
 >
@@ -14,9 +14,8 @@
     <label>Name</label>
     <input
       clrInput
-      type="name"
-      [(ngModel)]="name"
-      id="name"
+      type="text"
+      [(ngModel)]="form.name"
       name="name"
       required
     />
@@ -29,9 +28,8 @@
     <label>Email</label>
     <input
       clrInput
-      type="email"
-      [(ngModel)]="email"
-      id="email"
+      type="text"
+      [(ngModel)]="form.email"
       name="email"
       required
     />
@@ -45,9 +43,8 @@
     <input
       clrInput
       type="password"
-      [(ngModel)]="password"
+      [(ngModel)]="form.password"
       name="password"
-      id="password"
       required
       minlength="6"
     />
@@ -64,9 +61,8 @@
     <input
       clrInput
       type="password"
-      [(ngModel)]="password_confirmation"
+      [(ngModel)]="form.password_confirmation"
       name="password_confirmation"
-      id="password_confirmation"
       required
       minlength="6"
     />
