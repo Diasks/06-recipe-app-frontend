@@ -13,12 +13,12 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { SavedComponent } from './saved/saved.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { SavedDetailsComponent } from './saved-details/saved-details.component';
 import { CreateListComponent } from './create-list/create-list.component';
+import { EditListComponent } from './edit-list/edit-list.component';
 
 
 @NgModule({
-  declarations: [AppComponent, RecipeDetailsComponent, RecipeListComponent, SavedComponent, LoginComponent, RegisterComponent, SavedDetailsComponent, CreateListComponent],
+  declarations: [AppComponent, RecipeDetailsComponent, RecipeListComponent, SavedComponent, LoginComponent, RegisterComponent, CreateListComponent, EditListComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

@@ -5,18 +5,18 @@ import { RecipeListComponent } from "./recipe-list/recipe-list.component";
 import { SavedComponent } from "./saved/saved.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
-import { SavedDetailsComponent } from "./saved-details/saved-details.component";
 import { CreateListComponent } from "./create-list/create-list.component";
-
+import { EditListComponent } from './edit-list/edit-list.component';
 
 const routes: Routes = [
   { path: "", component: RecipeListComponent },
   { path: "recipe/:id", component: RecipeDetailsComponent },
   { path: "create-list", component: CreateListComponent },
   { path: "saved", component: SavedComponent },
-  { path: "saved/:id", component: SavedDetailsComponent },
+  {path: "edit-list/:id", component: EditListComponent},
   { path: "register", component: RegisterComponent },
-  { path: "login", component: LoginComponent }
+  { path: "login", component: LoginComponent },
+
 ];
 
 @NgModule({
