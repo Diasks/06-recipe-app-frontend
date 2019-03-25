@@ -1,9 +1,15 @@
+
+
 <section class="title">
-  <h5 class="hint">Skapa en ny lista</h5>
+  <h5 class="hint">Skapa en ny lista!</h5>
 </section>
-<form (ngSubmit)="onSubmit($event)" #createForm="ngForm" class="create">
-  <input type="title" placeholder="title" id="title" required />
-  <input type="user_id" placeholder="userid" id="user_id" required />
+<form clrForm clrLayout="horizontal" (ngSubmit)="onSubmit($event.target)" #createForm="ngForm" class="create">
+  <clr-input-container>
+    <label>title</label>
+    <input clrInput type="title" [(ngModel)]="title" name="title" required/>
+    <clr-control-error *clrIfError="'required'" >This field is required!</clr-control-error>
+  </clr-input-container>
   <input type="submit" value="Submit" class="btn btn-primary" />
 </form>
+
 <button routerLink="/" class="btn btn-primary">back</button>
