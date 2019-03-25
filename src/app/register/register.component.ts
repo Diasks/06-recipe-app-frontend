@@ -11,29 +11,26 @@ export class RegisterComponent implements OnInit {
   constructor(private http: SearchService, private router: Router) {}
   
   ngOnInit() {}
+public form = {
+  name: null,
+email: null,
+password: null,
+password_confirmation: null,
 
-name: null;
-email: null;
-password: null;
-password_confirmation: null;
+}
 
 
-  onSubmit(event) {
-    const target = event.target;
-    const name = target.querySelector("#name").value;
-    const email = target.querySelector("#email").value;
-    const password = target.querySelector("#password").value;
-    const password_confirmation = target.querySelector("#password_confirmation")
-      .value;
-    this.http
-      .registerUser(name, email, password, password_confirmation)
-      .subscribe(data => {
-        if (data) {
-          this.router.navigate(["/login"]);
-         return data;
-        } else {
-          window.alert("error!");
-        }
-      });
-  }
+  onSubmit() {
+this.http.register(this.form).subscribe(
+  data => this.handleResponse(data)
+);
+}
+
+
+handleResponse(data) {
+this.http.handle(data.access_token, data.user.email);
+this.router.navigateByUrl('login');
+}
+
+
 }
