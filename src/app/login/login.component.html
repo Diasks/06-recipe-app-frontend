@@ -1,16 +1,16 @@
 <section class="title">
   <h5 class="hint">Logga in med ditt befintliga konto!</h5>
 </section>
-<form clrForm clrLayout="horizontal" (ngSubmit)="onSubmit($event)" #loginForm="ngForm" class="login">
+<form clrForm clrLayout="horizontal" (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login">
   <clr-input-container>
     <label>Email</label>
-    <input clrInput type="email" [(ngModel)]="email" id="email" name="email" required/>
+    <input clrInput type="text" [(ngModel)]="form.email" name="email" required/>
     <clr-control-error *clrIfError="'required'" >This field is required!</clr-control-error>
   </clr-input-container>
 
   <clr-input-container>
     <label>Password</label>
-    <input clrInput type="password" [(ngModel)]="password" id="password" name="password" required/>
+    <input clrInput type="password" [(ngModel)]="form.password" name="password" required/>
     <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
   </clr-input-container>
   <input type="submit" value="Submit" class="btn btn-primary" />
