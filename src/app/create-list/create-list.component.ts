@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "../search-service.service";
 import { Router } from "@angular/router";
-
+import { List } from './list.model';
 @Component({
   selector: "app-create-list",
   templateUrl: "./create-list.component.html",
@@ -13,16 +13,19 @@ export class CreateListComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(event) {
-    const target = event.target;
-    const title = target.querySelector("#title").value;
-    const user_id = target.querySelector("#user_id").value;
-    this.http.createList(title, user_id).subscribe(data => {
-      if (data) {
-        this.router.navigate(["/saved"]);
-        window.alert(`Din lista är nu skapad och heter följande: ${title}`);
-      } else {
-        window.alert("error!");
-      }
-    });
+    debugger;
+    const createList = new List();
+    debugger;
+    createList.title = event.title.value;
+    createList.email = this.http.getEmail();
+debugger;
+
+this.http.saveList(createList).subscribe(result => {
+  console.log(result);
+  this.router.navigateByUrl('/saved');
+});
+
   }
+
+
 }
