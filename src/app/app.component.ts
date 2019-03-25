@@ -46,4 +46,11 @@ export class AppComponent implements OnInit {
   doSearchLactos(term: string) {
     this.appetizerService.searchRecipeLactos(term);
   }
+
+
+  logout() {
+    this.appetizerService.remove();
+    this.appetizerService.removeEmail();
+
+  }
 }
