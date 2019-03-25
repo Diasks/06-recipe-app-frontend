@@ -11,21 +11,22 @@ export class LoginComponent implements OnInit {
   constructor(private http: SearchService, private router: Router) {}
 
   ngOnInit() {}
+ public form = {
+  email: null,
+  password: null
+ }
 
-email: null;
-password: null;
 
-  onSubmit(event) {
-    const target = event.target;
-    const email = target.querySelector("#email").value;
-    const password = target.querySelector("#password").value;
-    this.http.getUserDetails(email, password).subscribe(data => {
-      if (data["status"] == "success") {
-        this.router.navigate(["/saved"]);
-        window.alert(`du är nu inloggad och välkommen hit ${email}!`);
-      } else {
-        window.alert("Error!");
-      }
-    });
-  }
+
+onSubmit()
+{
+  this.http.login(this.form).subscribe(data => this.handleResponse(data));
+}
+
+
+handleResponse(data) {
+  this.http.handle(data.access_token, data.user.email);
+  this.router.navigateByUrl('/');
+}
+
 }
