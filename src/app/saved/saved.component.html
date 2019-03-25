@@ -1,25 +1,37 @@
-<ul>
-  <h2>Befintliga listor:</h2>
-  <li *ngFor="let list of saved">
-    <a routerLink="/saved/{{ list.id }}"> {{ list.title }} </a>
 
-    <button (click)="removeList(list.id)" title="remove">
+  <h2>Befintliga listor med tillhörande sparade recept:</h2>
+  <ul>
+  <li *ngFor="let list of list">
+  
+
+       <h3>Lista: {{ list.title }} </h3> <button> <a routerLink="/create-list" routerLinkActive="active"
+       >  <clr-icon shape="new" class="is-solid"></clr-icon></a
+     ></button> <button> <a routerLink="/edit-list/{{list.id}}" routerLinkActive="active"
+       > 
+          <clr-icon shape="pencil" class="is-solid"></clr-icon>
+    </a> </button>
+       
+       <button (click)="deleteLists(list.id)" title="remove">
+            <clr-icon shape="trash" class="is-solid"></clr-icon>
+          </button> <br />
+          <div *ngIf="list.recipe[0]"> 
+<a href="recipe/{{ list.recipe[0] }}"> {{ list.recipe[0] }}    </a>   <button (click)="deleteRecipe(list.id, list.recipe[0])" title="remove">
+    <clr-icon shape="trash" class="is-solid"></clr-icon>
+  </button></div>
+<br />
+<div *ngIf="list.recipe[1]"> 
+  <a href="recipe/{{ list.recipe[1] }}"> {{ list.recipe[1] }}    </a>   <button (click)="deleteRecipe(list.id, list.recipe[1])" title="remove">
       <clr-icon shape="trash" class="is-solid"></clr-icon>
-    </button>
+    </button></div>
+    <br /> <div *ngIf="list.recipe[2]"> 
+    <a href="recipe/{{ list.recipe[2] }}"> {{ list.recipe[2] }}    </a>   <button (click)="deleteRecipe(list.id, list.recipe[2])" title="remove">
+      <clr-icon shape="trash" class="is-solid"></clr-icon>
+    </button></div>
+  <br /><div *ngIf="list.recipe[3]"> 
+    <a href="recipe/{{ list.recipe[3] }}"> {{ list.recipe[3] }}    </a>   <button (click)="deleteRecipe(list.id, list.recipe[3])" title="remove">
+        <clr-icon shape="trash" class="is-solid"></clr-icon>
+      </button></div>
+    
   </li>
 </ul>
 
-<p>
-  <a routerLink="/create-list" routerLinkActive="active"
-    >Skapa en ny lista här!</a
-  >
-</p>
-
-<section class="title">
-  <h5 class="hint">Uppdatera en befintlig lista</h5>
-</section>
-<form (ngSubmit)="onSubmit($event)" #createForm="ngForm" class="update">
-  <input type="title" placeholder="nytt namn" id="title" required />
-  <input type="user_id" placeholder="id på lista" id="list_id" required />
-  <input type="submit" value="Uppdatera" class="btn btn-primary" />
-</form>
