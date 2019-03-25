@@ -40,8 +40,9 @@
       <a routerLink="/login" routerLinkActive="active" class="nav-link active">
         Login
       </a>
+    
       <a routerLink="/register" routerLinkActive="active" class="nav-link">Register</a>
-      <a routerLink="/login">Logout</a>
+      <a routerLink="/login" (click)="logout()">Logout</a>
       <a routerLink="/create-list" routerLinkActive="active" class="nav-link">Skapa ny lista</a>
       <a routerLink="/saved" routerLinkActive="active" class="nav-link">Mina listor</a>
 
