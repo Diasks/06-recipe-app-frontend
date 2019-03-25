@@ -16,10 +16,10 @@ const API_URL = environment.apiURL;
 @Injectable()
 export class SearchService {
 
-  private userUrl = "http://recipeapp.test/api";
+  private userUrl = "http://api.dianaskshipek.chas.academy/api";
   private iss = {
-    login : 'http://recipeapp.test/api/login',
-    register : 'http://recipeapp.test/api/register'
+    login : 'http://api.dianaskshipek.chas.academy/api/login',
+    register : 'http://api.dianaskshipek.chas.academy/api/register'
   }
 
  
@@ -197,7 +197,7 @@ removeEmail() {
 
 //Uppdatera titeln på min lista
   updateList(title: string, listId): Observable<any> {
-    return this.http.patch(`http://recipeapp.test/api/lists/${listId}`, {
+    return this.http.patch(`http://api.dianaskshipek.chas.academy/api/lists/${listId}`, {
  
 
       title: title
@@ -206,32 +206,32 @@ removeEmail() {
 
 //Spara ny lista
   saveList(List: List): any {
-    return this.http.post<List>(`http://recipeapp.test/api/lists/add`, List);
+    return this.http.post<List>(`http://api.dianaskshipek.chas.academy/api/lists/add`, List);
   }
 
 //Spara recept till lista
   saveRecipe(recipeAdd): Observable<any> {
     let recipeId = recipeAdd.recipe;
     let listId = recipeAdd.listId;
-    return this.http.patch(`http://recipeapp.test/api/lists/${listId}`, {
+    return this.http.patch(`http://api.dianaskshipek.chas.academy/api/lists/${listId}`, {
      recipeId    
     }) 
   };
 
 //Hämta lista för specifik användare
   getList(email:string) : any {
-    return this.http.get<List[]>(`http://recipeapp.test/api/lists/${email}`);
+    return this.http.get<List[]>(`http://api.dianaskshipek.chas.academy/api/lists/${email}`);
   }
 
 //Radera specifik lista
   deleteList(id:number): Observable<{}> {
-   return this.http.delete(`http://recipeapp.test/api/lists/${id}`);
+   return this.http.delete(`http://api.dianaskshipek.chas.academy/api/lists/${id}`);
 
   }
 
 //Radera specifikt recept från en specifik lista
   deleteRecipeList(listId: number, recipeId: string): Observable<{}> {
-   return this.http.delete(`http://recipeapp.test/api/lists/${listId}/${recipeId}`);
+   return this.http.delete(`http://api.dianaskshipek.chas.academy/api/lists/${listId}/${recipeId}`);
  
 
 }
