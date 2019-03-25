@@ -13,15 +13,14 @@ export class CreateListComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(event) {
-    debugger;
+ 
     const createList = new List();
-    debugger;
+
     createList.title = event.title.value;
     createList.email = this.http.getEmail();
-debugger;
+
 
 this.http.saveList(createList).subscribe(result => {
-  console.log(result);
   this.router.navigateByUrl('/saved');
 });
 

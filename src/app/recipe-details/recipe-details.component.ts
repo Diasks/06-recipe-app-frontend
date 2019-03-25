@@ -33,18 +33,12 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   saveRecipe(recipeId: string, listId: number) {
-
-    debugger;
     const recipeAdd = new Saved();
-    debugger;
     recipeAdd.recipe = recipeId;
     recipeAdd.listId = listId;
     recipeAdd.email = this.service.getEmail();
-    debugger;
   
     this.service.saveRecipe(recipeAdd).subscribe(result => {
-      debugger;
-      console.log(result);
       this.router.navigateByUrl('/saved');
     });
   }

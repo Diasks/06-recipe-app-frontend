@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { Observable, BehaviorSubject } from "rxjs";
 import {  map } from "rxjs/operators";
-import { Saved } from "./saved/saved.model";
+import { List } from "./create-list/list.model";
 
 const apiRoot = environment.apiRoot;
 const apiRootId = environment.apiRootId;
@@ -15,10 +15,92 @@ const API_URL = environment.apiURL;
 
 @Injectable()
 export class SearchService {
+
+  private userUrl = "http://recipeapp.test/api";
+  private iss = {
+    login : 'http://recipeapp.test/api/login',
+    register : 'http://recipeapp.test/api/register'
+  }
+
+ 
   private results$ = new BehaviorSubject<Array<any>>([]);
   public matches = this.results$.asObservable();
 
   constructor(private http: HttpClient) {}
+
+
+
+register(data) {
+  return this.http.post(`${this.userUrl}/register`, data)
+}
+
+login(data) {
+  return this.http.post(`${this.userUrl}/login`, data)
+}
+
+//ta token och email från register och login, skicka dessa vidare till funktionerna för set.token och set.email för att kunna lägg dom i localstorage.
+handle(token, email) {
+  this.set(token);
+  this.setEmail(email);
+}
+
+// När användaren har loggat in så lägger jag token i localstorage
+set(token) {
+  localStorage.setItem('token', token);
+}
+
+//hämta min token från localstorage
+get() {
+  return localStorage.getItem('token');
+}
+
+//ta min bort token från localstorage
+remove() {
+  localStorage.removeItem('token');
+}
+
+//Kollar om min token är valid 
+isValid() {
+  const token = this.get();
+  if(token) {
+    const payload = this.payload(token);
+    if(payload) {
+      return Object.values(this.iss).indexOf(payload.iss) > -1 ? true: false
+    }
+  }
+  return false;
+}
+
+//splittrar min token
+payload(token) {
+  const payload = token.split('.')[1];
+  return this.decode(payload);
+}
+
+//Parsar igenom payloaden 
+decode(payload) {
+  return JSON.parse(atob(payload));
+}
+
+
+loggedIn() {
+  return this.isValid();
+}
+
+// här hämtar jag ut emailen från localstorage
+getEmail() {
+  return localStorage.getItem('email');
+}
+
+// När användaren har loggat in så lägger jag emailen i localstorage
+setEmail(email) {
+  localStorage.setItem('email', email);
+}
+
+// funktion jag använder när användaren klickar på logga ut eftersom jag vill radera emailen från localstorage 
+removeEmail() {
+  localStorage.removeItem('email');
+}
 
   getRecipeId(recipeId: string): Observable<SearchItem[]> {
     return this.http.get<SearchItem[]>(
@@ -113,88 +195,44 @@ export class SearchService {
       });
   }
 
-  getLists() {
-    const LISTS = [];
-    const promise = new Promise((resolve, reject) => {
-      fetch("http://api.dianaskshipek.chas.academy/api/recipeLists")
-        .then(res => res.json())
-        .then(res => {
-          res.forEach(item => {
-            LISTS.push(
-              new Saved(item.id, item.title, item.recipes, item.user_id)
-            );
-          });
-          resolve(LISTS);
-        });
-    });
-    return promise;
-  }
-
-  getList(listId: number) {
-    let list: Saved;
-    const promise = new Promise((resolve, reject) => {
-      fetch(`http://api.dianaskshipek.chas.academy/api/recipeLists/${listId}`)
-        .then(res => res.json())
-        .then(res => {
-          list = new Saved(res.id, res.title, res.recipe, res.user_id);
-          resolve(list);
-        });
-    });
-    return promise;
-  }
-
-  registerUser(
-    name: string,
-    email: string,
-    password: string,
-    password_confirmation: string
-  ) {
-    return this.http.post("http://api.dianaskshipek.chas.academy/api/register", {
-      name,
-      email,
-      password,
-      password_confirmation
-    });
-  }
-
-  getUserDetails(email: string, password: string): Observable<any> {
-    return this.http.post("http://api.dianaskshipek.chas.academy/api/login", {
-      email,
-      password
-    });
-  }
-
+//Uppdatera titeln på min lista
   updateList(title: string, listId): Observable<any> {
-
-    return this.http.put(`http://api.dianaskshipek.chas.academy/api/recipeLists/${listId}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
+    return this.http.patch(`http://recipeapp.test/api/lists/${listId}`, {
+ 
 
       title: title
     });
   }
 
-  createList(title: string, user_id: number): Observable<any> {
-    return this.http.post("http://api.dianaskshipek.chas.academy/api/recipeLists", {
-      title,
-      user_id
-    });
+//Spara ny lista
+  saveList(List: List): any {
+    return this.http.post<List>(`http://recipeapp.test/api/lists/add`, List);
   }
 
-  addRecipeToList(listId: number, recipeId: string): Observable<any> {
-    return this.http.put(`http://api.dianaskshipek.chas.academy/api/recipeLists/${listId}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
+//Spara recept till lista
+  saveRecipe(recipeAdd): Observable<any> {
+    let recipeId = recipeAdd.recipe;
+    let listId = recipeAdd.listId;
+    return this.http.patch(`http://recipeapp.test/api/lists/${listId}`, {
+     recipeId    
+    }) 
+  };
 
-      recipe: recipeId
-    });
+//Hämta lista för specifik användare
+  getList(email:string) : any {
+    return this.http.get<List[]>(`http://recipeapp.test/api/lists/${email}`);
   }
 
-  removeRecipeList(listId: number): Observable<any> {
-    return this.http.delete(`${API_URL}api/recipeLists/${listId}`);
+//Radera specifik lista
+  deleteList(id:number): Observable<{}> {
+   return this.http.delete(`http://recipeapp.test/api/lists/${id}`);
+
   }
+
+//Radera specifikt recept från en specifik lista
+  deleteRecipeList(listId: number, recipeId: string): Observable<{}> {
+   return this.http.delete(`http://recipeapp.test/api/lists/${listId}/${recipeId}`);
+ 
+
+}
 }

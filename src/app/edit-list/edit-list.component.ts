@@ -18,14 +18,10 @@ export class EditListComponent implements OnInit {
 
 
   onSubmit(event) {
-    debugger;
     const target = event.target;
-    debugger;
     const title = target.querySelector("#title").value;
     const listId = +this.route.snapshot.paramMap.get("id");
-    debugger;
     this.service.updateList(title, listId).subscribe(data => {
-      debugger;
       if (data) {
         window.alert(`listan är uppdaterad och heter numera ${title}!`);
       }

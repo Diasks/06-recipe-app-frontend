@@ -22,7 +22,6 @@ list: List[];
   getLists(): void {
     let email = this.savedService.getEmail();
     this.savedService.getList(email).subscribe(data => {
-      console.log(data);
       let arr = [];
       for (let i = 0; i < 100; i++){
         if(data[i] != undefined) arr.push(data[i]);
@@ -33,7 +32,6 @@ list: List[];
 
   deleteLists(id: number)
   {
-  debugger;
     this.savedService.deleteList(id).subscribe(result => {
       return this.getLists();
     });
@@ -41,9 +39,7 @@ list: List[];
 
   deleteRecipe(listId: number, recipeId: string)
   {
-    debugger;
       this.savedService.deleteRecipeList(listId, recipeId).subscribe(result => {
-        console.log(result);
         return this.getLists();
       });
     }
