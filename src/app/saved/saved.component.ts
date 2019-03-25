@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "../search-service.service";
 import { Saved } from "./saved.model";
+import { List } from '../create-list/list.model';
 
 @Component({
   selector: "app-saved",
@@ -9,31 +10,45 @@ import { Saved } from "./saved.model";
 })
 export class SavedComponent implements OnInit {
   saved: Saved[];
+list: List[];
   constructor(private savedService: SearchService) {}
 
   ngOnInit() {
-    const that = this;
-    this.savedService.getLists().then((saved: Saved[]) => {
-      return (that.saved = saved);
-    });
+    this.getLists();
   }
 
-  removeList(listId: number) {
-    this.savedService.removeRecipeList(listId).subscribe(data => {
-      window.alert(`${listId} är nu raderad!`)
-     return data;
-    
-    });
-  }
 
-  onSubmit(event) {
-    const target = event.target;
-    const title = target.querySelector("#title").value;
-    const list_id = target.querySelector("#list_id").value;
-    this.savedService.updateList(title, list_id).subscribe(data => {
-      if (data) {
-        window.alert(`listan är uppdaterad och heter numera ${title}!`);
+
+  getLists(): void {
+    let email = this.savedService.getEmail();
+    this.savedService.getList(email).subscribe(data => {
+      console.log(data);
+      let arr = [];
+      for (let i = 0; i < 100; i++){
+        if(data[i] != undefined) arr.push(data[i]);
       }
+      this.list = arr;
+    })
+  }
+
+  deleteLists(id: number)
+  {
+  debugger;
+    this.savedService.deleteList(id).subscribe(result => {
+      return this.getLists();
     });
   }
+
+  deleteRecipe(listId: number, recipeId: string)
+  {
+    debugger;
+      this.savedService.deleteRecipeList(listId, recipeId).subscribe(result => {
+        console.log(result);
+        return this.getLists();
+      });
+    }
+
+
+
+
 }
