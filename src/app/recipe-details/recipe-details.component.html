@@ -7,8 +7,23 @@
   </li>
 </ul>
 
+<clr-dropdown>
+  <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+      Save
+      <clr-icon shape="caret down"></clr-icon>
+  </button>
+  <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+      <label class="dropdown-header">Choose list</label>
 
-<input type="number" placeholder="list_id" #list_id>
-<button (click)="saveRecipe(recipe$.id, list_id.value)" class="btn btn-primary"> save</button>
+
+
+      <div class="dropdown-divider"></div>
+      <clr-dropdown>
+
+          <button (click)="saveRecipe(recipe$.id, list.id)" type="button" clrDropdownTrigger *ngFor="let list of list">{{ list.title }}</button>
+         
+              </clr-dropdown>
+ 
+
 
 <button routerLink="/" class="btn btn-primary"> back</button>  
